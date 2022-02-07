@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta chartset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <!--Server Message Modal-->
+    <div id="serverMessageModal">
+        <div id='message'></div>
+    </div>
+
+    <!--Header-->
+    <div id="header">
+        <a href="https://www.rhinebecknyvillage.org/" target="_blank"><img id="seal" src="/images/seal.png"></a>
+        <div id="websiteTitleDiv">
+            <p id="title">A<span class="small-title-text">sher</span> D<span class="small-title-text">am</span> A<span class="small-title-text">lert</span>
+                S<span class="small-title-text">ystem</span></p>
+            <p id="subtitle">Flood Prevention Calculator</p>
+        </div>
+        <img id="logo" src="/images/logo.png">
+    </div>
+     <!--Threshold Modal-->
+        <div id="thresholdModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="clearInput(), closeModal(), swapThresholdForm(true)">&times;</span>
+                <p id="thresholdModalTitle" class="modal-title">Set Thresholds</p>
+                <hr>
+                <div id="thresholdError" class="input-error">
+                        <div id="thresholdMessage">
+                            Error! <span id="thresholdErrMsg"></span>
+                        </div>
+                </div>
+                <div id="updateThresholdForm">
+                    <div id="thresholdModalInputs">
+                        <div class="threshold-modal-input">
+                            <label>Threshold 1:</label>
+                            <input type="text" placeholder="1000" class="form-control" id="threshold1">
+                        </div>
+                        <div class="threshold-modal-input">
+                            <label>Threshold 2:</label>
+                            <input type="text" placeholder="2000" class="form-control" id="threshold2">
+                        </div>
+                        <div class="threshold-modal-input">
+                            <label>Threshold 3:</label>
+                            <input type="text" placeholder="3000" class="form-control" id="threshold3">
+                        </div>
+                        <div class="threshold-modal-input">
+                            <label>Threshold 4:</label>
+                            <input type="text" placeholder="4000" class="form-control" id="threshold4">
+                        </div>
+                    </div>
+                    <button id="updateThresholdBtn" type="submit" value="Submit" class="btn btn-success modal-save" onclick="updateThreshold()">Update</button>
+                </div>
+                <button id="viewThresholdsBtn" class="btn btn-info" onclick="swapThresholdForm(false, this)">View Current Thresholds</button>
+                <div id="thresholdsTableDiv">
+                    <table id="thresholdsTable" class="table table-striped">
+                        <tr>
+                            <td><b>Threshold</b></td>
+                            <td><b>Value</b></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td id="threshold1TD">XXX</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td id="threshold2TD">XXX</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td id="threshold3TD">XXX</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td id="threshold4TD">XXX</td>
+                        </tr>
+                    </table>
+                 </div>
+            </div>
+        </div>
+<script src="/javascript/modal.js"></script>
+<script src="/javascript/utils.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>

@@ -1,0 +1,7 @@
+.vscode/
+node_modules/
+.DS_Store
+packages-lock.json
+certs/*
+config.json
+docker-compose.yml

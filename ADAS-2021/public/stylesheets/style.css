@@ -1,0 +1,1066 @@
+/*Resource References*/
+@font-face {
+    font-family: bungee;
+    src: url(/fonts/bungee.ttf);
+}
+
+@font-face {
+    font-family: keepCalm;
+    src: url(/fonts/keepcalm.ttf);
+}
+
+@keyframes serverMessageFadeIn {
+    0%{opacity: 0; top: 0%; display: initial;}
+    25%{opacity: .25; top: 2%;}
+    50%{opacity: .5; top: 4%;}
+    75%{opacity: .75; top: 6%;}
+    100%{opacity: 1; top: 8%;}
+}
+
+@keyframes serverMessageFadeOut {
+    0%{opacity: 1; top: 8%;}
+    25%{opacity: .75; top: 6%;}
+    50%{opacity: .5; top: 4%;}
+    75%{opacity: .25; top: 2%;}
+    100%{opacity: 0; top: 0%; display: none;}
+}
+
+/*Entire webpage*/
+html {
+    height: 100%;
+}
+html, body {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    min-height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+
+    background: url(/images/background.JPG) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/*Server Message Modal*/
+#serverMessageModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 4px;
+    border: 2px solid black;
+    position: fixed;
+    z-index: 9999;
+    width: 500px;
+    height: 65px;
+    left: 50%;
+    top: -10%;
+    margin-left: -250px;
+    opacity: 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+.serverMessageFadeIn {
+    animation-name: serverMessageFadeIn;
+    animation-timing-function: linear;
+    animation-duration: .75s;
+    animation-fill-mode: forwards;
+}
+
+.serverMessageFadeOut {
+    animation-name: serverMessageFadeOut;
+    animation-timing-function: linear;
+    animation-duration: .15s;
+}
+
+/*Header CSS*/
+#header {
+    font-family: Verdana;
+    background-color: rgba(128, 128, 128, .7);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 110px;
+}
+
+#logo, #seal {
+    width: 110px;
+    height: 110px;
+}
+
+#websiteTitleDiv {
+    color: white;
+    text-shadow: 2px 2px black;
+    text-align: center;
+    font-family: keepCalm;
+}
+
+#title {
+    font-size: 45px;
+}
+
+.small-title-text {
+    font-size: 30px;
+}
+
+#subtitle {
+    font-size: 17px;
+}
+
+/*Content CSS*/
+#content {
+    justify-content: center;
+    position: relative;
+    top: 10px;
+    bottom: 10px;
+}
+
+#adminLoginContent {
+    justify-content: center;
+    position: relative;
+    top: 30px;
+    bottom: 10px;
+}
+
+#dataControl {
+    width: 800px;
+    position: relative;
+    margin: auto;
+    margin-bottom: 65px;
+}
+
+#graphCalendarDiv {
+    position: absolute;
+    left: 25px;
+    float: left;
+    display: flex;
+    justify-content: center;
+}
+
+input[type="date"] {
+    background-color: rgba(0, 0, 0, .75);
+    color: white;
+    font-size: 20px;
+    font-family: keepcalm;
+    height: 45px;
+    width: 250px;
+    margin-top: 20px;
+    border-color: #2E6DA4;
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 1px;
+    cursor: pointer;
+
+    -webkit-align-items: center;
+    display: -webkit-inline-flex;
+    overflow: hidden;
+    padding: 0;
+    -webkit-padding-start: 1px;
+}
+
+input[type="date"]:hover{
+    background-color: rgba(0, 0, 0, 1);
+}
+
+input[type="date"]::-webkit-datetime-edit {
+    -webkit-flex: 1;
+    -webkit-user-modify: read-only !important;
+    display: inline-block;
+    min-width: 0;
+    overflow: hidden;
+}
+
+input[type="date"]::-webkit-datetime-edit-fields-wrapper {
+    -webkit-user-modify: read-only !important;
+    display: inline-block;
+    padding: 1px 0;
+    white-space: pre;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+}
+
+#graphDropdownDiv {
+    position: absolute;
+    right: 25px;
+    margin-top: 20px;
+    float: right;
+    display: flex;
+}
+
+#dropdownDiv {
+    position: relative;
+    margin-top: 20px;
+    top: 10px;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.dropdown-menu {
+    font-family: keepcalm;
+    margin-left: 0px;
+    width: 180px;
+    cursor: pointer;
+}
+
+.dropdown-toggle {
+    width: 250px;
+    align-items: baseline;
+}
+
+.caret {
+    position: relative;
+    float: right;
+    top: 8px;
+}
+
+#dropdown > button {
+    background-color: rgba(0, 0, 0, .75);
+    font-family: keepcalm;
+    font-size: 20px;
+}
+
+#dropdown > button:hover {
+    background-color: rgba(0, 0, 0, 1);
+}
+
+#dropdown > ul {
+    background-color: rgba(0, 0, 0, 1);
+    border-color: #2E6DA4;
+    width: 250px;
+    text-align: center;
+}
+
+#dropdown > ul > li > a {
+    color:white;
+}
+
+#dropdown > ul > li > a:hover {
+    color: black;
+}
+
+/*All Cards*/
+#weatherDataDiv {
+    position: relative;
+    top: 32px;
+}
+
+/*Weather Data Cards*/
+#precipitationCards {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    width: 810px;
+}
+
+/*Weather Info Cards*/
+#weatherInfoDiv {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    padding-top: 20px;
+    width: 810px;
+}
+
+.card{
+    font-family: bungee;
+    background-color: rgba(0, 0, 0, .8);
+    width: 175px;
+    height: 175px;
+    border-radius: 35px;
+}
+
+#warningImg{
+    display: none;
+    position: absolute;
+    top: 165px;
+    right: 110px;
+    width: 40px;
+    height: 40px;
+}
+
+.card-content{
+    text-align: center;
+    color: white;
+    position: relative;
+    top: 15px;
+}
+
+.card-title{
+    font-size: 20px;
+}
+
+.card-amount{
+    font-size: 45px;
+    color: white;
+}
+
+.card-unit{
+    font-size: 25px;
+    color: white;
+}
+
+#dischargeCard{
+    font-family: bungee;
+    background-color: rgba(0, 0, 0, .8);
+    width: 250px;
+    height: 250px;
+    border-radius: 35px;
+    color: white;
+    text-align: center;
+    line-height: 2em;
+}
+
+#dischargeAmount{
+    position: relative;
+    font-size: 50px;
+    color: #65FC5A;
+}
+
+#dischargeMeasurementDiv{
+    position: relative;
+    top: 60px;
+    align-items: baseline;
+}
+
+#dischargeUnit{
+    font-size: 35px;
+}
+
+#valveCard{
+    font-family: bungee;
+    background-color: rgba(0, 0, 0, .8);
+    width: 475px;
+    height: 250px;
+    color: white;
+    text-align: center;
+    border-radius: 35px;
+}
+
+#valveAmounts{
+    position: relative;
+    top: 20px;
+    font-size: 25px;
+}
+
+#graph1, #graph2{
+    margin: 10px auto;
+    margin-bottom: 2%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#graphCard1, #graphCard2 {
+    font-family: bungee;
+    background-color: rgba(0, 0, 0, .8);
+    width: 1050px;
+    height: 620px;
+    color: white;
+    text-align: center;
+    border-radius: 35px;
+}
+
+.graphCard-title{
+    font-size: 25px;
+    /*margin-bottom: -10px;*/
+}
+.graphCard-title-temp{
+    text-align: center;
+    color: white;
+    font-family: bungee;
+    font-size: 25px;
+    /*margin-bottom: -10px;*/
+}
+
+#graphDate {
+    text-align: left;
+    margin-left: 5%;
+    margin-bottom:0;
+    font-family: "keepcalm";
+}
+
+#graph1Date, #graph2Date {
+    font-size: 25px;
+}
+
+#rainloggerChart, #leveloggerChart{
+    position: center;
+    padding: 0px 20px 0px 20px;
+    font-size: 25px;
+    justify-content: space-evenly;
+}
+
+#navDiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-bottom: 25px;
+}
+
+#navCard {
+    font-family: bungee;
+    background-color: rgba(0, 0, 0, .8);
+    width: 200px;
+    height: 100px;
+    color: white;
+    text-align: center;
+    border-radius: 35px;
+    
+}
+
+.navButton {
+    background-color: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    /*padding: 24px 15px;*/
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /*margin: 4px 2px;*/
+    cursor: pointer;
+    /*  Center Text  */
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#adminLoginFormDiv{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+#adminLoginFormCard {
+    font-family: bungee;
+    background-color: rgba(0, 0, 0, .8);
+    width: 350px;
+    height: 225px;
+    color: white;
+    text-align: left;
+    border-radius: 35px;
+}
+
+#adminLoginForm {
+    background-color: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 17px;
+    /*  Center Text  */
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+input[name="username"], input[name="password"] {
+    height: 25px;
+    width: 250px;
+    font-family: "keepcalm";
+    color: black;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+/*Submit button*/
+input[type="submit"] {
+    background: #0e629f;
+    color:white;
+    border-style: solid;
+    border-color: black;
+    margin-top: 10px;
+    height: 50px;
+    width: 100px;
+    font: bold 15px;
+    text-shadow: none;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+/* top: 165px; */
+/* right: 110px; */
+/* width: 40px; */
+/* height: 40px; */
+/* Popup container */
+.popup {
+    display: inline-block;
+    position: absolute;
+    top: 180px;
+    right: 5px;
+    width: 40px;
+    height: 10px;
+    font-size: 20px;
+    padding: 5px;
+    color: #fff;
+}
+
+/* Popup text */
+.popup .popuptext {
+    visibility: hidden;
+    border-radius: 10px;
+    opacity: 1;
+    color: black;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    top: 15px;
+    left: 40px;
+}
+
+/* Arrow next to the popup */
+.popup .popuptext::after {
+    content: " ";
+    position: absolute;
+    top: 75%;
+    right: 100%; /* To the left of the tooltip */
+    margin-top: -5px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent lightgrey transparent transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.popup:hover .popuptext {
+    visibility: visible;
+}
+
+#colorTable{
+    position: absolute;
+    width: 350px;
+    height: 200px;
+    padding: 10px;
+    text-align: center;
+    margin-top: -135px;
+    background: lightgrey;
+    border-radius: inherit;
+    box-shadow: 5px 5px 20px black;
+}
+
+.color-img{
+    width: 15px;
+    height: 15px;
+    position: relative;
+    bottom: 6px;
+}
+
+.stage-color{
+    width: 75px;
+    height: 20px;
+    position: relative;
+    left: 55px;
+}
+
+#stage1Color{background-color: #65FC5A;}
+#stage2Color{background-color: #FCE703;}
+#stage3Color{background-color: orange;}
+#stage4Color{background-color: #EA6E6E;}
+#stage5Color{background-color: red;}
+
+#attribution{
+    font-family: keepCalm;
+    font-size: 12px;
+    position: absolute;
+    bottom: 2%;
+    right: 10px;
+    width: 100%;
+    text-align: right;
+}
+
+#attribution a{
+    color: white;
+}
+
+#footer{
+    position: relative;
+    height: 55px;
+}
+
+/*Footer CSS*/
+#bar{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    /*margin-top: auto;*/
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgba(128, 128, 128, .75);
+    align-items: baseline;
+}
+
+#bar > button{
+    margin: 10px;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+#bar > button:hover{
+    background-color: rgba(0, 0, 0, 1);
+}
+
+#bar > div{
+    color: white;
+    font-family: bungee;
+    text-align: center;
+}
+
+#lastUpdate{
+    font-size: 18px;
+}
+
+/*Modal CSS*/
+.modal{
+    display: none;
+    position: fixed;
+    z-index: 5;
+    left: 50%;
+    top: 50%;
+    margin-top: -285px;
+    margin-left: -275px;
+    width: 550px;
+    height: 455px;
+    overflow: auto;
+}
+
+.modal-content{
+    background-color: #FEFEFE;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 550px;
+    height: 455px;
+}
+
+.modal-title{
+    text-align: center;
+    font-size: 25px;
+    color: black;
+}
+
+.close{
+    color: black;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    opacity: 1;
+}
+
+.close:hover,
+.close:focus{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-save{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+/*Notification Modal*/
+#notifModalInputs{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+    position: relative;
+    top: 20px;
+}
+
+.notif-modal-input{
+    margin-bottom: 50px;
+    width: 150px !important;
+}
+
+#addEmailForm{
+    display: initial;
+}
+
+#swapFormBtn{
+    left: 20px;
+}
+
+#removeEmailForm{
+    display: none;
+    text-align: center;
+    position: relative;
+    top: 25px;
+}
+
+#removeInput{
+    position: relative;
+    left: 50%;
+    margin-left: -75px;
+}
+
+#removeBtn{
+    position: relative;
+    top: 40px;
+}
+
+/*Threshold Modal*/
+#thresholdModalInputs{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    top: 20px;
+    width: 80%;
+    margin: auto;
+}
+
+.threshold-modal-input{
+    width: 150px;
+    margin-bottom: 50px;
+}
+
+#viewThresholdsBtn{
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+#thresholdsTable{
+    position: absolute;
+    left: 50%;
+    border: 1px solid rgba(127, 127, 127, 1);
+    width: 350px;
+    text-align: center;
+    margin-left: -175px;
+}
+
+#thresholdsTableDiv{
+    display: none;
+}
+
+/*Error Modal*/
+#errorModal{
+    display: none;
+    position: fixed;
+    width: 200px;
+    height: 80px;
+    left: 50%;
+    top: 50%;
+    margin-top: -40px;
+    margin-left: -100px;
+    background-color: white;
+    border-radius: 10px;
+    border: 2px solid red;
+    z-index: 3;
+}
+
+#errorModal > p{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.input-error{
+    position: relative;
+    left: 50%;
+    background-color: lightgray;
+    border: 2px solid red;
+    color: black;
+    border-radius: 5px;
+    height: 35px;
+    opacity: 0;
+    width: 350px;
+    margin-left: -175px;
+}
+
+#thresholdMessage, #notifMessage{
+    text-align: center;
+    position: relative;
+    top: 5px;
+}
+
+/*Modal background CSS*/
+#backdrop{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 2;
+}
+
+/*Responsitivity CSS*/
+/*Visual Cue: From standard appearance to the 2x2 with the larger cards under*/
+@media screen and (max-width: 850px){
+    .popup{
+        display: none;
+    }
+
+    #header{
+        height: 82px;
+    }
+
+    #content{
+        top: 35px;
+    }
+
+    #dropdownDiv{
+        top: 10px;
+        bottom: 20px;
+    }
+
+    #precipitationCards{
+        width: 470px;
+        height: 370px;
+    }
+
+    #warningImg{
+        top: 125px;
+        right: 90px;
+        width: 30px;
+        height: 30px;
+    }
+
+    #weatherInfoDiv{
+        width: 595px;
+    }
+
+    #dischargeCard{
+        width: 200px;
+        height: 200px;
+    }
+
+    #dischargeMeasurementDiv{
+        position: relative;
+        top: 35px;
+    }
+
+    #dischargeAmount{
+        font-size: 35px;
+    }
+
+    #valveCard{
+        width: 375px;
+        height: 200px;
+    }
+
+    #valveAmounts{
+        font-size: 18px;
+    }
+
+    .card-title{
+        font-size: 15px;
+    }
+
+    #content{
+        top: 54px;
+    }
+
+    #title{
+        font-size: 32px;
+    }
+
+    .small-title-text{
+        font-size: 21px;
+    }
+
+    #subtitle{
+        font-size: 16px;
+    }
+
+    #logo, #seal{
+        width: 82px;
+        height: 82px;
+    }
+    
+    #footer{
+        margin-top: 60px;/*125px;*/
+    }
+
+}
+
+/*Visual Cue: Center text in footer decreases in size*/
+@media screen and (max-width: 625px){
+    #lastUpdate{
+        font-size: 11px;
+    }
+}
+
+/*Visual Cue: 'Valve Openings' card moves under Discharge card*/
+@media screen and (max-width: 610px){
+
+    #dropdownDiv{
+        top: 10px;
+        bottom: 20px;
+    }
+
+    #weatherDataDiv{
+        top: 10px;
+    }
+
+    #weatherInfoDiv{
+        width: 350px;
+    }
+
+    #valveCard{
+        margin-top: 10px;
+    }
+
+    #content{
+        top: 25px;
+    }
+
+    #footer{
+        margin-top: 60px;/*155px;*/
+    }
+}
+
+/*Visual Cue: Header logo and symbol disappear*/
+@media screen and (max-width: 550px){
+    #header{
+        justify-content: center;
+    }
+
+    #websiteTitle{
+        position: relative;
+        top: 8px;
+    }
+
+    #title{
+        font-size: 20px;
+    }
+
+    #subtitle{
+        font-size: 17px;
+    }
+
+    #logo, #seal{
+        display: none;
+    }
+
+    #content{
+        top: 27px;
+    }
+
+    #footer{
+        margin-top: 60px;/*125px;*/
+    }
+}
+
+/*Visual Cue: Size of all cards decreases*/
+@media screen and (max-width: 490px){
+    #precipitationCards{
+        width: 280px;
+        height: 280px;
+    }
+
+    .card{
+        height: 130px;
+        width: 130px;
+    }
+
+    .warning{
+        left: 105px;
+        bottom: 95px;
+        width: 25px;
+        height: 25px;
+    }
+
+    .card-title{
+        font-size: 15px;
+    }
+
+    .card-amount{
+        font-size: 30px;
+    }
+
+    .card-unit{
+        font-size: 21px;
+    }
+
+    #footer{
+        margin-top: 60px; /*137px;*/
+    }
+}
+
+/*Visual Cue: "Last Update" text disappears*/
+@media screen and (max-width: 470px){
+    #lastUpdate{
+        display: none;
+    }
+
+    #footer{
+        margin-top: 60px;/*152px;*/
+    }
+}
+
+/*Visual Cue: "Valve Openings" card shrinks in size*/
+@media screen and (max-width: 375px){
+    #weatherInfoDiv{
+        width: 260px;
+    }
+
+    #valveCard{
+        width: 275px;
+        height: 175px;
+    }
+
+    #valveAmounts{
+        font-size: 14px;
+    }
+
+    #content{
+        top: 25px;
+    }
+}
+
+/* Attempts to account for screens that are 'extra' wide relative to their height */
+@media screen and (max-height: 900px) and (max-width: 1440){
+    #footer{
+        margin-top: 60px;/*107px;*/
+    }
+}
+
+@media screen and (max-height: 850px){
+    #attribution{
+        position: relative;
+        top: 23%;
+        bottom: -50px;
+    }
+    
+    #footer{
+        margin-top: 60px;/*50px;*/
+    }
+}

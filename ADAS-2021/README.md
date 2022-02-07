@@ -1,135 +1,13 @@
-<<<<<<< HEAD
-=======
-# MC-Capping-Algozzine-2021
-This application stack is the web frontend for ADAS.
-## Prerequisites
-1) Docker
-2) docker-compose
-3) API keys
-
-## Application Stack
-This application consists of three services, `mysql`, `adas-web`, and `nginx`.<br>
-### MySQL
-MySQL is storing weather data from the weather API, along with users and threshold information.
-
-### ADAS Web
-Adas Web is the node web application. This is the frontend service and backend scripts to get weather data.
-
-### Nginx
-Nginx is running as a reverse proxy to add SSL to the connection.
-
-## Running
-### Configuration
-The two files that need to be edited before running are `config.json` and `docker-compose.yml`.<br>
-Copy or move the example files files
-```
-mv config-example.json config.json
-mv docker-compose-example.yml docker-compose.yml
-```
-
-Edit the `docker-compose.yml` file. You need to set the `MYSQL_ROOT_PASSWORD` variable
-```
-services:
-  mysql:
-    image: mysql:latest
-    environment:
-      - MYSQL_ROOT_PASSWORD={PWORD}
-    volumes:
-      - mysql:/var/lib/mysql
-      - ./db.sql:/docker-entrypoint-initdb.d/db.sql:ro
-...
-```
-Next, edit the config.json file.
-```
-{
-    "database": {
-        "host" : "mysql",
-        "user" : "root",
-        "password" : "pword",
-        "database" : "damdb"
-    },
-    "server" : {
-        "port" : "8080"
-    },
-    "externalAPIs" : {
-        "weathergov" : {
-            "url" : "api.weather.gov"
-        },
-        "darksky" : {
-            "url" : "api.darksky.net",
-            "key" : "abc-123"
-        },
-        "openweathermap" : {
-            "url" : "api.openweathermap.org",
-            "key" : "def-xyz"
-        },
-        "numRequests" : "1"
-    },
-    "email" : {
-        "address" : "myemail@addr.com",
-        "password" : "pword"
-    }
-}
-```
-The Database `password` should match what you entered for `MYSQL_ROOT_PASSWORD`. Make sure all other keys are filled out.<br><br>
-#### SSL
-The Nginx service is expecting SSL keys in `certs/ssl.*`. You can generate your own SSL certs via openssl.
-```
-cd {/path/to/directory}/certs
-sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ssl.key -out ssl.crt
-```
-If you are going use your own SSL certs, you can either name them `ssl.key` and `ssl.crt` or change the Nginx config file to match the SSL files name.
-
-
-### Executing
-To run ADAS, `cd` into the directory.<br>
-You need to build the container.
-```
-docker-compose build
-```
-
-Once the containers are build, run the container.
-```
-docker-compose up -d
-```
-
-To shut the container down, run:
-```
-docker-compose down
-```
-
-
-
-
->>>>>>> 8e2d8b02740af8da74a3762de07acb2b90012191
 # ADAS
 Asher Dam Alert System
 
 # Meta
-<<<<<<< HEAD
 Assignment: Rhineback Asher Dam Capping Project 2019
 
 Professor: Christopher Algozzine
 
 Semester: Fall 2019
 
-=======
-Assignment: Rhineback Asher Dam Capping Project 2021
-
-Professor: Christopher Algozzine
-
-Semester: Fall 2021
-
-# Requirements Before ADAS Setup:
-Make sure that you have the following:
-1. VMware Tools installed
-2. Windows Server 2016 installed and configured
-3. Remote Desktop Session configured
-4. Node.js and npm v.2.6.5 installed
-5. Git installed
-6. MySQL installed and configured
-7. config.json file created
->>>>>>> 8e2d8b02740af8da74a3762de07acb2b90012191
 
 # public
 
@@ -199,11 +77,8 @@ handleServerMessage()
   
 *api.js*
 This file contains the code used to interact with the API’s. The following API’s are used:  
-<<<<<<< HEAD
 &nbsp;-Weather.gov  
 &nbsp;&nbsp;&nbsp; -Documentation(https://www.weather.gov/documentation/services-web-api)  
-=======
->>>>>>> 8e2d8b02740af8da74a3762de07acb2b90012191
 &nbsp;DarkSky  
 &nbsp;&nbsp;&nbsp; -Documentation(https://darksky.net/dev/docs)  
 &nbsp;Open Weather  
@@ -222,7 +97,6 @@ updateWeatherData(con, callback)
 &nbsp; -Update all of the weather sources and store them in the database.  
 updateDB(rainArr, totalPrecip, api, callback)  
 &nbsp; -Send the query to update the database with new weather data.  
-<<<<<<< HEAD
 updateWeatherGov(callback)  
 &nbsp; -Update, average, and store data from weather.gov.  
 getWeatherGovData(callback)  
@@ -231,8 +105,6 @@ fetchGovData(url, callback)
 &nbsp; -Send the request to weather.gov to get json and format.  
 formatGovData(precipData)  
 &nbsp; -Parses rain data for the next four days.  
-=======
->>>>>>> 8e2d8b02740af8da74a3762de07acb2b90012191
 updateDarkSkyData(callback)  
 &nbsp; -Update, average, and store data from darksky.net.  
 getDarkSkyData(callback)  

@@ -1,0 +1,29 @@
+{
+    "database": {
+        "host" : "mysql",
+        "user" : "root",
+        "password" : "pword",
+        "database" : "damdb"
+    },
+    "server" : {
+        "port" : "8080"
+    },
+    "externalAPIs" : {
+        "weathergov" : {
+            "url" : "api.weather.gov"
+        },
+        "darksky" : {
+            "url" : "api.darksky.net",
+            "key" : "abc-123"
+        },
+        "openweathermap" : {
+            "url" : "api.openweathermap.org",
+            "key" : "def-xyz"
+        },
+        "numRequests" : "1"
+    },
+    "email" : {
+        "address" : "myemail@addr.com",
+        "password" : "pword"
+    }
+}

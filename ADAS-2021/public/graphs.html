@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta chartset="utf-8">
+    <title>Rhinebeck: Asher Dam Alert System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--Chart.js for graphing-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<!--Ajax-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<!--JQuery CSV module for parsing a CSV-->
+    <!--<script src="jquery-csv.js"></script>-->
+</head>
+<body>
+    <!--Server Message Modal-->
+    <div id="serverMessageModal">
+        <div id='message'></div>
+    </div>
+
+    <!--Header-->
+    <div id="header">
+        <a href="https://www.rhinebecknyvillage.org/" target="_blank"><img id="seal" src="/images/seal.png"></a>
+        <div id="websiteTitleDiv">
+            <p id="title">
+                A<span class="small-title-text">sher</span>
+                D<span class="small-title-text">am</span>
+                A<span class="small-title-text">lert</span>
+                S<span class="small-title-text">ystem</span></p>
+            <p id="subtitle">Flood Prevention Calculator</p>
+        </div>
+        <img id="logo" src="/images/logo.png">
+    </div>
+
+    <!--Content-->
+    <div id="content">
+        <div id="navDiv">
+            <div id="navCard" class="card-content">
+                <button class="navButton" onclick="location.href='index.html'" type="button">View Weather Data</button>
+            </div>
+        </div>
+        <div id="dataControl">
+            <!-- Add back when functionality to the calendar can be added -->
+            <!--Calendar - Date Selection-->
+            <!--<div id="graphCalendarDiv">
+                <input type="date" id="graphDateInput" name="graphDateInput" onchange="clearCharts(); createRainloggerChart(); createLeveloggerChart();">
+            </div>-->
+
+            <!-- Add back when functionality to the dropdown can be added -->
+            <!--Weather Selection Dropdown Menu-->
+            <!--<div id="graphDropdownDiv">
+                <div id="dropdown" class="dropdown">
+                    <button id="curSrcBtn" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        Hourly
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a>Hourly</a></li>
+                        <li><a>Daily</a></li>
+                        <li><a>Monthly</a></li>
+                    </ul>
+                </div>
+            </div>-->
+        </div>
+        <div id="weatherDataDiv">
+            <!--Graph 2 with Canvas.js-->
+            <div id="graph1">
+                <div id="graphCard1">
+                    <div id="graphContent" class="card-content">
+                        <div class="graphCard-title"><u>Levelogger Data</u></div>
+                        <div id="graphDate">
+                            <!--Month:-->
+                            This Month: 
+                            <span id="graph1Date">month</span>
+                        </div>
+                        <canvas id="leveloggerChart" style="width:100%; max-width:1025px;"></canvas>
+                    </div>
+                </div>
+            </div>
+            <!--Graph 1 with Canvas.js-->
+            <div id="graph2">
+                <div id="graphCard2">
+                    <div id="graphContent" class="card-content">
+                        <div class="graphCard-title"><u>Rainlogger Data</u></div>
+                        <div id="graphDate">
+                            <!--Month:-->
+                            This Month: 
+                            <span id="graph2Date">month</span>
+                        </div>
+                        <canvas id="rainloggerChart" style="width:100%; max-width:1025px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--Footer-->
+    <div id="footer">
+        <div id="bar">
+            <!--<button id="openNotifModalBtn" type="button" class="btn btn-primary" onclick="openModal(this)">Notifications</button>-->
+            <div id="lastUpdate">Data last updated <span id="updateHours">XXX</span> hours and <span id="updateMinutes">XXX</span> minutes ago</div>
+            <!--<button id="openThresholdModalBtn" type="button" class="btn btn-primary" onclick="openModal(this)">Thresholds</button>-->
+        </div>
+    </div>
+
+
+
+<!--Extra materials-->    
+    <!--Notification Modal-->
+    <div id="notificationModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="clearInput(), closeModal(), swapEmailForm(true)">&times;</span>
+                <p id="notifModalTitle" class="modal-title">Receive Notifications</p>
+                <hr>
+                <div id="notifError" class="input-error">
+                        <div id="notifMessage">
+                            Error! <span id="notifErrMsg"></span>
+                        </div>
+                </div>
+                <div id="addEmailForm">
+                    <div id="notifModalInputs">
+                        <div class="notif-modal-input">
+                            <label>First Name:</label>
+                            <input type="text" placeholder="Johnny" class="form-control" id="fName">
+                        </div>
+                        <div class="notif-modal-input">
+                            <label>Last Name:</label>
+                            <input type="text" placeholder="Appleseed" class="form-control" id="lName">
+                        </div>
+                        <div class="notif-modal-input">
+                            <label>Email:</label>
+                            <input type="text" placeholder="test@example.com" class="form-control" id="emailToAdd">
+                        </div>
+                        <div class="notif-modal-input">
+                            <label>Phone Number:</label>
+                            <input type="text" placeholder="7834591264" class="form-control" id="phone" name="phone_number">
+                        </div>
+                    </div>
+                    <button id="addEmailBtn" type="submit" value="Submit" class="btn btn-success modal-save" onclick="addEmail()">Add</button>
+                </div>
+                <button id="swapFormBtn" class="btn btn-warning modal-save" onclick="swapEmailForm()">Turn Off Notifications</button>
+                <div id="removeEmailForm">
+                    <div id="removeInput" class="notif-modal-input">
+                            <label>Email:</label>
+                            <input type="text" placeholder="test@example.com" class="form-control" id="emailToRemove">
+                            <button id="removeBtn" class="btn btn-danger" onclick="removeEmail()">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    <!-- this is to be removed once admin page is up and running but keeping here for safety reasons-->
+        <!--Threshold Modal-->
+        <div id="thresholdModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="clearInput(), closeModal(), swapThresholdForm(true)">&times;</span>
+                <p id="thresholdModalTitle" class="modal-title">Set Thresholds</p>
+                <hr>
+                <div id="thresholdError" class="input-error">
+                        <div id="thresholdMessage">
+                            Error! <span id="thresholdErrMsg"></span>
+                        </div>
+                </div>
+                <div id="updateThresholdForm">
+                    <div id="thresholdModalInputs">
+                        <div class="threshold-modal-input">
+                            <label>Threshold 1:</label>
+                            <input type="text" placeholder="10000" class="form-control" id="threshold1">
+                        </div>
+                        <div class="threshold-modal-input">
+                            <label>Threshold 2:</label>
+                            <input type="text" placeholder="20000" class="form-control" id="threshold2">
+                        </div>
+                        <div class="threshold-modal-input">
+                            <label>Threshold 3:</label>
+                            <input type="text" placeholder="35000" class="form-control" id="threshold3">
+                        </div>
+                        <div class="threshold-modal-input">
+                            <label>Threshold 4:</label>
+                            <input type="text" placeholder="55000" class="form-control" id="threshold4">
+                        </div>
+                    </div>
+                    <button id="updateThresholdBtn" type="submit" value="Submit" class="btn btn-success modal-save" onclick="updateThreshold()">Update</button>
+                </div>
+                <button id="viewThresholdsBtn" class="btn btn-info" onclick="swapThresholdForm(false, this)">View Current Thresholds</button>
+                <div id="thresholdsTableDiv">
+                    <table id="thresholdsTable" class="table table-striped">
+                        <tr>
+                            <td><b>Threshold</b></td>
+                            <td><b>Value</b></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td id="threshold1TD">XXX</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td id="threshold2TD">XXX</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td id="threshold3TD">XXX</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td id="threshold4TD">XXX</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!--Error Modal-->
+        <div id="errorModal">
+            <p>Enlarge view to access modals</p>
+        </div>
+        <div id="backdrop"></div>
+    </body>
+    <script src="/javascript/modal.js"></script>
+    <script src="/javascript/graphs.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>

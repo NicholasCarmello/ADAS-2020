@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta chartset="utf-8">
+    <title>Rhinebeck: Asher Dam Alert System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <!--Server Message Modal-->
+    <div id="serverMessageModal">
+        <div id='message'></div>
+    </div>
+
+    <!--Header-->
+    <div id="header">
+        <a href="https://www.rhinebecknyvillage.org/" target="_blank"><img id="seal" src="/images/seal.png"></a>
+        <div id="websiteTitleDiv">
+            <p id="title">
+                A<span class="small-title-text">sher</span>
+                D<span class="small-title-text">am</span>
+                A<span class="small-title-text">lert</span>
+                S<span class="small-title-text">ystem</span></p>
+            <p id="subtitle">Flood Prevention Calculator</p>
+        </div>
+        <img id="logo" src="/images/logo.png">
+    </div>
+
+    <!--Content-->
+    <div id="content">
+        <!--Navigation button-->
+        <div id="navDiv">
+            <div id="navCard" class="card-content">
+                <button class="navButton" onclick="location.href='graphs.html'" type="button">View Graphs</button>
+            </div>
+        </div>
+        <!--Weather Selection Dropdown Menu-->
+        <div id="dropdownDiv">
+            <div id="dropdown" class="dropdown">
+                <button id="curSrcBtn" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    darksky.net
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a>darksky.net</a></li>
+                    <li><a>openweathermap.org</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="weatherDataDiv">
+            <!--Weather Data Cards-->
+            <div id="precipitationCards">
+                <div id="card1" class="card">
+                    <div class="card-content">
+                        <div id="day1" class="card-title">Today</div>
+                        <div id="amount1" class="card-amount">XXX</div>
+                        <div class="card-unit">in</div>
+                    </div>
+                </div>
+                <div id="card2" class="card">
+                    <div class="card-content">
+                        <div id="day2" class="card-title">Tomorrow</div>
+                        <div id="amount2" class="card-amount">XXX</div>
+                        <div class="card-unit">in</div>
+                    </div>
+                </div>
+                <div id="card3" class="card">
+                    <div class="card-content">
+                        <div id="day3" class="card-title">XXX</div>
+                        <div id="amount3" class="card-amount">XXX</div>
+                        <div class="card-unit">in</div>
+                    </div>
+                </div>
+                <div id="card4" class="card">
+                    <div class="card-content">
+                        <div id="day4" class="card-title">XXX</div>
+                        <div id="amount4" class="card-amount">XXX</div>
+                        <div class="card-unit">in</div>
+                    </div>
+                </div>
+            </div>
+            <!--Weather Information Cards-->
+            <div id="weatherInfoDiv">
+                <div id="dischargeCard">
+                    <div class="card-content">
+                        <div class="card-title"><u>Discharge Volume</u></div>
+                            <div id="dischargeMeasurementDiv">
+                                <span id="dischargeAmount">XXX</span>
+                                <span id="dischargeUnit">m<sup>3</sup></span>
+                            </div>
+                        <div class="popup">?
+                            <div class="popuptext">
+                                <table id="colorTable">
+                                    <tr>
+                                        <td><b>Stage</b></td>
+                                        <td><b>Color</b></td>
+                                    </tr>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><div id="stage1Color" class="stage-color"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td><div id="stage2Color" class="stage-color"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td><div id="stage3Color" class="stage-color"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td><div id="stage4Color" class="stage-color"><img class="color-img" src="/images/warning.png"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <td>>4</td>
+                                        <td><div id="stage5Color" class="stage-color"><img class="color-img" src="/images/danger.png"></div></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <img id="warningImg" src="" title="">
+                    </div>
+                </div>
+                <div id="valveCard">
+                    <div class="card-content">
+                        <div class="card-title"><u>Valve Openings</u></div>
+                        <div id="valveAmounts">
+                            <p id="valves2">Open 2 valves for <span id="hour1">XXX</span> hours</p>
+                            <p id="valves3">Open 3 valves for <span id="hour2">XXX</span> hours</p>
+                            <p id="valves4">Open 4 valves for <span id="hour3">XXX</span> hours</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p id="attribution">Powered by source</p>
+    <!--Footer-->
+    <div id="footer">
+        <div id="bar">
+            <!--<button id="openNotifModalBtn" type="button" class="btn btn-primary" onclick="openModal(this)">Notifications</button>-->
+            <div id="lastUpdate">Data last updated <span id="updateHours">XXX</span> hours and <span id="updateMinutes">XXX</span> minutes ago</div>
+            <!--<button id="openThresholdModalBtn" type="button" class="btn btn-primary" onclick="openModal(this)">Thresholds</button>-->
+        </div>
+    </div>
+
+
+<!--Extra materials-->    
+    <!--Notification Modal-->
+    <div id="notificationModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="clearInput(), closeModal(), swapEmailForm(true)">&times;</span>
+                <p id="notifModalTitle" class="modal-title">Receive Notifications</p>
+                <hr>
+                <div id="notifError" class="input-error">
+                        <div id="notifMessage">
+                            Error! <span id="notifErrMsg"></span>
+                        </div>
+                </div>
+                <div id="addEmailForm">
+                    <div id="notifModalInputs">
+                        <div class="notif-modal-input">
+                            <label>First Name:</label>
+                            <input type="text" placeholder="Johnny" class="form-control" id="fName">
+                        </div>
+                        <div class="notif-modal-input">
+                            <label>Last Name:</label>
+                            <input type="text" placeholder="Appleseed" class="form-control" id="lName">
+                        </div>
+                        <div class="notif-modal-input">
+                            <label>Email:</label>
+                            <input type="text" placeholder="test@example.com" class="form-control" id="emailToAdd">
+                        </div>
+                        <div class="notif-modal-input">
+                            <label>Phone Number:</label>
+                            <input type="text" placeholder="7834591264" class="form-control" id="phone" name="phone_number">
+                        </div>
+                    </div>
+                    <button id="addEmailBtn" type="submit" value="Submit" class="btn btn-success modal-save" onclick="addEmail()">Add</button>
+                </div>
+                <button id="swapFormBtn" class="btn btn-warning modal-save" onclick="swapEmailForm()">Turn Off Notifications</button>
+                <div id="removeEmailForm">
+                    <div id="removeInput" class="notif-modal-input">
+                            <label>Email:</label>
+                            <input type="text" placeholder="test@example.com" class="form-control" id="emailToRemove">
+                            <button id="removeBtn" class="btn btn-danger" onclick="removeEmail()">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    <!-- this is to be removed once admin page is up and running but keeping here for safety reasons-->
+        <!--Threshold Modal-->
+        <div id="thresholdModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="clearInput(), closeModal(), swapThresholdForm(true)">&times;</span>
+                <p id="thresholdModalTitle" class="modal-title">Set Thresholds</p>
+                <hr>
+                <div id="thresholdError" class="input-error">
+                        <div id="thresholdMessage">
+                            Error! <span id="thresholdErrMsg"></span>
+                        </div>
+                </div>
+                <div id="updateThresholdForm">
+                    <div id="thresholdModalInputs">
+                        <div class="threshold-modal-input">
+                            <label>Threshold 1:</label>
+                            <input type="text" placeholder="10000" class="form-control" id="threshold1">
+                        </div>
+                        <div class="threshold-modal-input">
+                            <label>Threshold 2:</label>
+                            <input type="text" placeholder="20000" class="form-control" id="threshold2">
+                        </div>
+                        <div class="threshold-modal-input">
+                            <label>Threshold 3:</label>
+                            <input type="text" placeholder="35000" class="form-control" id="threshold3">
+                        </div>
+                        <div class="threshold-modal-input">
+                            <label>Threshold 4:</label>
+                            <input type="text" placeholder="55000" class="form-control" id="threshold4">
+                        </div>
+                    </div>
+                    <button id="updateThresholdBtn" type="submit" value="Submit" class="btn btn-success modal-save" onclick="updateThreshold()">Update</button>
+                </div>
+                <button id="viewThresholdsBtn" class="btn btn-info" onclick="swapThresholdForm(false, this)">View Current Thresholds</button>
+                <div id="thresholdsTableDiv">
+                    <table id="thresholdsTable" class="table table-striped">
+                        <tr>
+                            <td><b>Threshold</b></td>
+                            <td><b>Value</b></td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td id="threshold1TD">XXX</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td id="threshold2TD">XXX</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td id="threshold3TD">XXX</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td id="threshold4TD">XXX</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--Error Modal-->
+        <div id="errorModal">
+            <p>Enlarge view to access modals</p>
+        </div>
+        <div id="backdrop"></div>
+    </body>
+    <script src="/javascript/modal.js"></script>
+    <script src="/javascript/utils.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>
